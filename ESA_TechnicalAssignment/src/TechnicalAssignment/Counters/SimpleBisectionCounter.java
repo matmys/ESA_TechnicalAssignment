@@ -1,3 +1,5 @@
+package TechnicalAssignment.Counters;
+
 import java.time.Instant;
 import java.util.Vector;
 
@@ -34,6 +36,6 @@ public class SimpleBisectionCounter extends BisectionCounter
 			return this._timestamps.size();
 		}
 		
-		return Bisection.countGreaterOrEqualValues(this._timestamps, targetEpoch);
+		return this.countGreaterOrEqualValues(this._timestamps, targetEpoch);
 	}
 }

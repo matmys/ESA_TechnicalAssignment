@@ -1,3 +1,5 @@
+package TechnicalAssignment.Counters;
+
 import java.time.Instant;
 import java.util.Vector;
 
@@ -46,8 +48,8 @@ public class FragmentedBisectionCounter extends BisectionCounter
 					this._timestamps.lastElement().size();
 		}
 		
-		int targetVectorIndex = this.findTargetVectorIndex(targetEpoch);
-		int countedValuesInTargetVector = Bisection.countGreaterOrEqualValues(this._timestamps.get(targetVectorIndex), targetEpoch);
+		int targetVectorIndex = this.findVectorWithTargetEpoch(targetEpoch);
+		int countedValuesInTargetVector = this.countGreaterOrEqualValues(this._timestamps.get(targetVectorIndex), targetEpoch);
 		
 		int result = (this._timestamps.size() - (targetVectorIndex + 1)) * FragmentedBisectionCounter._innerVectorCapacity + 
 				countedValuesInTargetVector;
@@ -60,7 +62,7 @@ public class FragmentedBisectionCounter extends BisectionCounter
 		return result;
 	}
 	
-	private int findTargetVectorIndex(long targetEpoch)
+	private int findVectorWithTargetEpoch(long targetEpoch)
 	{
 		int windowStart = 0;
 		int windowEnd = this._timestamps.size();

@@ -1,24 +1,19 @@
+package TechnicalAssignment.Benchmark;
+
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
 
-public class Main 
+import TechnicalAssignment.Counters.RealTimeCounter;
+
+public class Benchmark 
 {
-	public static void main(String [] args) throws InterruptedException
+	public static void Run(RealTimeCounter realTimeCounter, int samples) throws InterruptedException
 	{
-		SimpleBisectionCounter bisectionCounter = new SimpleBisectionCounter();
-		FragmentedBisectionCounter fragmentedBisectionCounter = new FragmentedBisectionCounter();
-		
-		Benchmark(bisectionCounter);
-		Benchmark(fragmentedBisectionCounter);
-	}
-	
-	private static void Benchmark(RealTimeCounter realTimeCounter) throws InterruptedException
-	{
-		System.out.println("Testing: " + realTimeCounter.getClass().getName());
+		System.out.println("Testing: " + realTimeCounter.getClass().getSimpleName());
 		
 		long epochStart = Instant.now().toEpochMilli();
 		
-		for(int i =0; i < 10000000; i++)
+		for(int i =0; i < samples; i++)
 		{
 			realTimeCounter.increment();
 		}
@@ -31,7 +26,7 @@ public class Main
 		
 		epochStart = Instant.now().toEpochMilli();
 		
-		for (int i = 0; i < 10000000; i++)
+		for (int i = 0; i < samples; i++)
 		{
 			realTimeCounter.getCountInLastSecond();
 		}

@@ -1,3 +1,4 @@
+package TechnicalAssignment.Counters;
 
 public interface RealTimeCounter 
 {
